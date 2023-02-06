@@ -4,7 +4,6 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:namer_app/file_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,18 +55,6 @@ class MyHomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MaterialButton(
-                    onPressed: () async =>
-                        await Clipboard.setData(ClipboardData(text: pair)),
-                    textColor: Colors.white,
-                    color: Theme.of(context).buttonTheme.colorScheme!.primary,
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide.none,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: Text(
-                      "Copy",
-                    )),
-                SizedBox(width: 10),
-                MaterialButton(
                     onPressed: () => appState.getNext(),
                     textColor: Colors.white,
                     color: Theme.of(context).buttonTheme.colorScheme!.primary,
@@ -77,19 +64,7 @@ class MyHomePage extends StatelessWidget {
                     child: Text(
                       "Next",
                     )),
-                SizedBox(width: 10),
-                MaterialButton(
-                    onPressed: () =>
-                      write_save(content: '$pair\n')
-                    ,
-                    textColor: Colors.white,
-                    color: Theme.of(context).buttonTheme.colorScheme!.primary,
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide.none,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: Text(
-                      "Save",
-                    ))
+
               ],
             )
           ],
@@ -100,12 +75,12 @@ class MyHomePage extends StatelessWidget {
 }
 
 class BigCard extends StatelessWidget {
-  const BigCard({
+   BigCard({
     super.key,
     required this.pair,
   });
 
-  final String pair;
+  String pair;
 
   @override
   Widget build(BuildContext context) {
